@@ -1,12 +1,12 @@
 " NOTE(brian): OK so this line is b/c there's a thing called vi that is
-" sometimes open instead of vim or something but this is V(improved) so this
+" sometimes opens instead of vim or something but this is V(improved) so this
 " is better or I dunno what's really happening.
 set nocompatible
 
 " NOTE(brian): Vundle says I gotta turn filetype off before I Bundle or Plugin
 " or whatever. I don't really know what filetype does or why Bundle or Plugin
 " or Vundle even needs it to be turned off? Sounds dangerous. Also they
-" fucking changed the name on me for no goddamn reason. I hate them.
+" fucking breaking these apis I hate them.
 filetype off
 
 " NOTE(brian): I have no idea what +=~/ could possibly mean what if oh wait, I
@@ -18,6 +18,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
+" NOTE(brian): Open nerdtree on ctrl-n
+map <C-n> :NERDTreeToggle<CR>
 Plugin 'scrooloose/nerdcommenter'
 
 " NOTE(brian): I feel like I have no luck with tpope stuff
@@ -56,10 +58,11 @@ syntax on
 syntax on
 syntax on
 
-" NOTE(brian): ¿I don't understand?  set hidden
+" NOTE(brian): ¿I don't understand?
+" set hidden
 set confirm
 
-" NOTE(brian): Why is this next line all commented out??
+" NOTE(brian): Why is this next line commented out??
 " set autowriteall
 
 " NOTE(brian): this is the line that makes it so finding things doesn't wrap
@@ -131,8 +134,6 @@ set autoindent
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
 
-" NOTE(brian): Open NERDTree, right?
-map <C-n> :NERDTreeToggle<CR>
 "" NOTE(brian): close NERDTree when you close a tab.
 "let NERDTreeQuitOnOpen=1
 
