@@ -5,9 +5,10 @@ export PS1="\[\e[1;33m\] \w 😈  \[\e[0m\]"
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
-# NOTE(brian): NODE_JS web scale
+# NOTE(brian): NODE.JS NODE_JS? NOBE_JS node require
+# NOTE(brian): web scale
 # NOTE(brian): Start npm when terminal starts
-# NOTE(briam): nvm is slow as shit
+# NOTE(👿): nvm is slow as shit
 export NVM_DIR="/Users/brian/.nvm"
 . $(brew --prefix nvm)/nvm.sh
 nvm use --silent 5.8
