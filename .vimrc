@@ -32,6 +32,8 @@ let g:autoswap_detect_tmux = 1
 Plugin 'L9'
 Plugin 'FuzzyFinder'
 Plugin 'elzr/vim-json'
+" NOTE(brian): stop hiding my quotes in json please
+let g:vim_json_syntax_conceal = 0
 
 Plugin 'pangloss/vim-javascript'
 Plugin 'ctrlpvim/ctrlp.vim'
