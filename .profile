@@ -16,3 +16,15 @@ nvm use --silent 5.8
 TERM=xterm; export TERM
 
 export PATH="./node_modules/.bin:$PATH"  
+
+export PATH="$HOME/.yarn/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f /Users/brian/Downloads/google-cloud-sdk/path.bash.inc ]; then
+  source '/Users/brian/Downloads/google-cloud-sdk/path.bash.inc'
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f /Users/brian/Downloads/google-cloud-sdk/completion.bash.inc ]; then
+  source '/Users/brian/Downloads/google-cloud-sdk/completion.bash.inc'
+fi

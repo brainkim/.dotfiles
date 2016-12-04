@@ -18,6 +18,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'mbyte'
 " NOTE(brian): Open nerdtree on ctrl-n
 map <C-n> :NERDTreeToggle<CR>
 Plugin 'scrooloose/nerdcommenter'
@@ -36,15 +37,22 @@ Plugin 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
 
 Plugin 'pangloss/vim-javascript'
+Plugin 'leafgarland/typescript-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-fireplace'
-Plugin 'vim-scripts/paredit.vim'
-Plugin 'darfink/vim-plist'
 Plugin 'nfischer/vim-ohm'
+Plugin 'darfink/vim-plist'
 
+Plugin 'vim-scripts/paredit.vim'
 Plugin 'kien/rainbow_parentheses.vim'
-" ooh I have so excited to install this plugin
-Plugin 'joeytwiddle/sexy_scroller.vim'
+au BufEnter *.clj RainbowParenthesesToggle
+au Syntax clojure RainbowParenthesesLoadRound
+au Syntax clojure RainbowParenthesesLoadSquare
+au Syntax clojure RainbowParenthesesLoadBraces
+
+" Plugin 'joeytwiddle/sexy_scroller.vim'
+" let g:SexyScroller_MaxTime=125
+" let g:SexyScroller_EasingStyle=2
 call vundle#end()
 
 " NOTE(brian): this is the official end of the whole thing. Back to full power
@@ -156,14 +164,3 @@ set foldlevel=99
 
 " NOTE(brian): make sure vim cleans itself up after you exit.
 au VimLeave * :!clear
-
-" NOTE(brian): let's just see what happens when I leave rainbow parens on all
-" the time
-
-let g:SexyScroller_MaxTime=125
-let g:SexyScroller_EasingStyle=2
-
-au BufEnter *.clj RainbowParenthesesToggle
-au Syntax clojure RainbowParenthesesLoadRound
-au Syntax clojure RainbowParenthesesLoadSquare
-au Syntax clojure RainbowParenthesesLoadBraces
