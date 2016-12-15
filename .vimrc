@@ -18,7 +18,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'mbyte'
 " NOTE(brian): Open nerdtree on ctrl-n
 map <C-n> :NERDTreeToggle<CR>
 Plugin 'scrooloose/nerdcommenter'
@@ -37,6 +36,9 @@ Plugin 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
 
 Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+" NOTE(brian): fuck you vim-jsx
+let g:jsx_ext_required = 0
 Plugin 'leafgarland/typescript-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-fireplace'

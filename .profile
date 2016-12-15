@@ -12,7 +12,7 @@ eval "$(hub alias -s)"
 # NOTE(brian): Start npm when terminal starts
 export NVM_DIR="/Users/brian/.nvm"
 . $(brew --prefix nvm)/nvm.sh
-nvm use --silent 7.1
+nvm use --silent 6.9.1
 
 TERM=xterm; export TERM
 
