@@ -12,13 +12,11 @@ eval "$(hub alias -s)"
 # NOTE(brian): Start npm when terminal starts
 export NVM_DIR="/Users/brian/.nvm"
 . $(brew --prefix nvm)/nvm.sh
-nvm use --silent 6.9.1
+nvm use --silent 6.11.1
 
 TERM=xterm; export TERM
 
 export PATH="./node_modules/.bin:$PATH"  
-
-export PATH="$HOME/.yarn/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f /Users/brian/.google-cloud-sdk/path.bash.inc ]; then
