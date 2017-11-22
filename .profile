@@ -3,7 +3,7 @@ export EDITOR="vim"
 export PS1="\[\e[1;33m\]🌚  speak child 🌝  \\w \[\e[0m\]🌞  "
 # NOTE(brian): Make ls have colors or something
 export CLICOLOR=1
-export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+export PYTHONDONTWRITEBYTECODE=True
 
 eval "$(hub alias -s)"
 
@@ -11,8 +11,8 @@ eval "$(hub alias -s)"
 # NOTE(brian): web scale
 # NOTE(brian): Start npm when terminal starts
 export NVM_DIR="/Users/brian/.nvm"
-. $(brew --prefix nvm)/nvm.sh
-nvm use --silent 6.11.1
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+nvm use v6.11.1 --silent
 
 TERM=xterm; export TERM
 
