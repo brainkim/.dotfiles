@@ -37,6 +37,7 @@ let g:vim_json_syntax_conceal = 0
 
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'alampros/vim-styled-jsx'
 " NOTE(brian): fuck you vim-jsx
 let g:jsx_ext_required = 0
 Plugin 'leafgarland/typescript-vim'
@@ -66,8 +67,6 @@ filetype plugin indent on
 au BufNewFile,BufRead *.pgn setf pgn
 
 " NOTE(brian): Enable syntax highlighting (doy)?
-syntax on
-syntax on
 syntax on
 
 " NOTE(brian): ¿I don't understand?
