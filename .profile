@@ -1,5 +1,5 @@
 export EDITOR="vim"
-export PS1="\[\e[1;33m\]🌚  speak child 🌝  \\w \[\e[0m\]🌞  "
+export PS1="\[\e[1;33m\]🌚 speak child 🌝 \\w \[\e[0m\]🌞 "
 export CLICOLOR=1
 export PYTHONDONTWRITEBYTECODE=True
 
