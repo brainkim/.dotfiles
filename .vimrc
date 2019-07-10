@@ -1,63 +1,69 @@
 set nocompatible
-
 filetype off
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
-" NOTE(brian): Open nerdtree on ctrl-n
 map <C-n> :NERDTreeToggle<CR>
-Plugin 'L9'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'editorconfig/editorconfig-vim'
-
-" Language plugins
-Plugin 'elzr/vim-json'
+" LANGUAGE-SPECIFIC
+Plugin 'GutenYe/json5.vim'
 let g:vim_json_syntax_conceal = 0
 Plugin 'pangloss/vim-javascript'
-" Plugin 'styled-components/vim-styled-components'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/tsuquyomi'
 Plugin 'mxw/vim-jsx'
 let g:jsx_ext_required = 0
-Plugin 'leafgarland/typescript-vim'
+Plugin 'styled-components/vim-styled-components'
 Plugin 'jparise/vim-graphql'
 Plugin 'alexlafroscia/postcss-syntax.vim'
 call vundle#end()
 
 filetype on
 filetype plugin indent on
-
 syntax on
 
-" Settings
-set confirm
-set nowrapscan
-set wildmenu
-set showcmd
-set hlsearch
-set nomodeline
-set encoding=utf-8
-set ignorecase
-set smartcase
+" SETTINGS
+" INPUT
+set autoindent
 set backspace=indent,eol,start
-set ruler
-set laststatus=0
 set mouse=a
+
+" DISPLAY
+set colorcolumn=81
+set encoding=utf-8
 set number
-set relativenumber
-set novisualbell
-set noerrorbells
+set laststatus=2
+set ruler
+
+" WHITESPACE
 set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
-set autoindent
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+
+" BELLS
+set noerrorbells
+set novisualbell
+
+" CODE FOLDING
 set foldmethod=syntax
+" disable all folding by default
 set foldlevel=99
 
-" Mappings
-let mapleader = ","
-nnoremap <C-L> :nohl<CR><C-L>
-nnoremap ; :
+" SEARCH
+" highlight matches
+set hlsearch
+set ignorecase
+" prevent find next/prev from wrapping aound the ends of the file
+set nowrapscan
+set smartcase
+" autocomplete for command line
+set wildmenu
 
-au VimLeave * :!clear
+" MAPPINGS
+nnoremap ; :
+" clear all search highlights when <C-L> is pressed
+nnoremap <C-L> :nohl<CR><C-L>
