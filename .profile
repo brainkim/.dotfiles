@@ -1,10 +1,10 @@
 export EDITOR="nvim"
-export PS1="\[\e[35m\]\w\[\e[m\] \$ "
+export PS1="%~ %% "
 export CLICOLOR=1
 
-eval "$(direnv hook bash)"
+#eval "$(direnv hook bash)"
 eval "$(fnm env)"
-fnm use 14 --log-level=error
+fnm use 15 --log-level=error
 
 export PATH="$PATH:./node_modules/.bin"
 export PATH="$PATH:/usr/local/sbin"
