@@ -32,7 +32,7 @@ set shiftwidth=2
 set softtabstop=2
 set nojoinspaces
 set list
-set listchars=tab:⸽\ ,trail:␠
+set listchars=tab:·\ ,nbsp:␣,trail:·,extends:⟩,precedes:⟨
 
 " strip trailing whitespace on write
 autocmd BufWritePre * :%s/\s\+$//e
