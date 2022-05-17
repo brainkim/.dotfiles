@@ -1,5 +1,5 @@
 export EDITOR="nvim"
-export PROMPT="%~ %#"
+export PROMPT="%~ %# "
 export CLICOLOR=1
 
 #eval "$(direnv hook bash)"
