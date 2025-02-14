@@ -16,9 +16,7 @@ for file in "${dotfiles[@]}"; do
   
   # Create symlink
   echo "Linking $source -> $target"
-  mkdir -p $target
   ln -sf "$source" "$target"
 done
 
 echo "Dotfiles installation complete!"
-
