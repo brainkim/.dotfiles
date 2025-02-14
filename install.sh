@@ -3,7 +3,7 @@
 # Define the list of dotfiles to symlink
 dotfiles=(
   ".tmux.conf"
-  ".vimrc"
+  ".zshrc"
   ".config/nvim/init.lua"
 )
 
@@ -16,6 +16,7 @@ for file in "${dotfiles[@]}"; do
   
   # Create symlink
   echo "Linking $source -> $target"
+  mkdir -p $target
   ln -sf "$source" "$target"
 done
 
