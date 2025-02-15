@@ -16,6 +16,7 @@ for file in "${dotfiles[@]}"; do
   
   # Create symlink
   echo "Linking $source -> $target"
+  rm -r $target
   ln -sf "$source" "$target"
 done
 

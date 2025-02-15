@@ -14,3 +14,4 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
 # Enable reverse search in zshrc
 bindkey '^R' history-incremental-search-backward
+export PATH="/opt/homebrew/bin:$PATH"
