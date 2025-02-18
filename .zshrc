@@ -2,16 +2,12 @@ export EDITOR="nvim"
 export PROMPT="%~ %# "
 export CLICOLOR=1
 
-#eval "$(direnv hook bash)"
-
-export PATH="$PATH:./node_modules/.bin"
-#export PATH="$PATH:/usr/local/sbin"
-#export PATH="$PATH:~/.cargo/bin"
-#export PATH="$PATH:~/.deno/bin"
+bindkey -e
 
 alias vim="nvim"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
-# Enable reverse search in zshrc
-bindkey '^R' history-incremental-search-backward
+export PATH="./node_modules/.bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$PATH:/Users/briankim/.bun/bin"
+export PATH="/Users/briankim/go/bin:$PATH"
