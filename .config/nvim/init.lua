@@ -2,15 +2,26 @@
 local vim = vim
 local Plug = vim.fn['plug#']
 vim.call('plug#begin')
+Plug("neovim/nvim-lspconfig")
+Plug("preservim/nerdtree")
 Plug("ctrlpvim/ctrlp.vim")
 Plug("editorconfig/editorconfig-vim")
 Plug("roryokane/detectindent")
-Plug("neovim/nvim-lspconfig")
-Plug("preservim/nerdtree")
+Plug("github/copilot.vim")
 vim.call('plug#end')
 
 -- General settings
+-- Apply the settings you would otherwise place in your vimrc
+vim.cmd [[
+syntax on
+filetype plugin indent on
+]]
 vim.opt.autoindent = true
+vim.opt.expandtab = false
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+
 vim.opt.backspace = 'indent,eol,start'
 vim.opt.mouse = 'a'
 vim.opt.number = true
@@ -19,10 +30,6 @@ vim.opt.encoding = 'utf-8'
 vim.opt.laststatus = 2
 vim.opt.ruler = true
 vim.opt.linebreak = true
-vim.opt.expandtab = false
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
 vim.opt.joinspaces = false
 vim.opt.list = true
 vim.opt.listchars = 'tab:· ,nbsp:␣,trail:·,extends:⟩,precedes:⟨'
@@ -60,10 +67,4 @@ end
 
 -- Setup the LSP servers you use
 lspconfig.ts_ls.setup({on_attach = on_attach})
--- Additional LSP servers can be setup similarly
-
--- Apply the settings you would otherwise place in your vimrc
-vim.cmd [[
-syntax on
-filetype plugin indent on
-]]
+lspconfig.zls.setup({on_attach = on_attach})
