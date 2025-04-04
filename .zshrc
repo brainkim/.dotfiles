@@ -1,5 +1,6 @@
 export EDITOR="nvim"
-export PROMPT="%F{green}%~%f %# "
+export PROMPT="%F{green}%~%f %F{13}%#%f "
+
 export CLICOLOR=1
 
 bindkey -e
