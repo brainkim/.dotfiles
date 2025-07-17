@@ -53,6 +53,18 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 vim.api.nvim_set_keymap('n', '<C-L>', ':nohlsearch<CR><C-L>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-n>', ':NERDTreeToggle<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'ge', '<cmd>lua vim.diagnostic.open_float(nil, {scope="line"})<CR>', { noremap = true, silent = true })
+-- Jump to next diagnostic and open it in a floating window
+vim.keymap.set('n', ']d', function()
+  vim.diagnostic.goto_next()
+  vim.diagnostic.open_float()
+end, { desc = "Go to next diagnostic and show details" })
+
+-- Jump to previous diagnostic and open it in a floating window
+vim.keymap.set('n', '[d', function()
+  vim.diagnostic.goto_prev()
+  vim.diagnostic.open_float()
+end, { desc = "Go to previous diagnostic and show details" })
 
 -- LSP configuration
 local lspconfig = require('lspconfig')
