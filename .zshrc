@@ -6,6 +6,8 @@ export CLICOLOR=1
 bindkey -e
 setopt share_history
 
+[ -f "$HOME/.env" ] && source "$HOME/.env"
+
 alias vim="nvim"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
