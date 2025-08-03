@@ -8,6 +8,10 @@ Plug("ctrlpvim/ctrlp.vim")
 Plug("editorconfig/editorconfig-vim")
 Plug("roryokane/detectindent")
 Plug("github/copilot.vim")
+Plug("lewis6991/gitsigns.nvim")
+-- Needed for claude-code.nvim?
+Plug('nvim-lua/plenary.nvim')
+Plug('greggh/claude-code.nvim')
 vim.call('plug#end')
 
 -- General settings
@@ -52,31 +56,37 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- Key mappings
 vim.api.nvim_set_keymap('n', '<C-L>', ':nohlsearch<CR><C-L>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-n>', ':NERDTreeToggle<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', 'ge', '<cmd>lua vim.diagnostic.open_float(nil, {scope="line"})<CR>', { noremap = true, silent = true })
--- Jump to next diagnostic and open it in a floating window
-vim.keymap.set('n', ']d', function()
-  vim.diagnostic.goto_next()
-  vim.diagnostic.open_float()
-end, { desc = "Go to next diagnostic and show details" })
-
--- Jump to previous diagnostic and open it in a floating window
-vim.keymap.set('n', '[d', function()
-  vim.diagnostic.goto_prev()
-  vim.diagnostic.open_float()
-end, { desc = "Go to previous diagnostic and show details" })
 
 -- LSP configuration
 local lspconfig = require('lspconfig')
 local on_attach = function(client, bufnr)
   -- Your mappings and additional setup go here
+	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', {noremap = true, silent = true})
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', {noremap = true, silent = true})
+
+  vim.keymap.set('n', 'K', function()
+    local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line('.') - 1 })
+    if #diagnostics > 0 then
+      vim.diagnostic.open_float()
+    else
+      vim.lsp.buf.hover()
+    end
+  end, { buffer = bufnr, noremap = true, silent = true })
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', {noremap = true, silent = true})
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'cr', '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true, silent = true})
-  -- Additional mappings can be added here
+	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', {noremap = true, silent = true})
+	vim.keymap.set('n', ']d', function()
+		vim.diagnostic.goto_next()
+		vim.diagnostic.open_float()
+	end, { desc = "Go to next diagnostic and show details" })
+	vim.keymap.set('n', '[d', function()
+		vim.diagnostic.goto_prev()
+		vim.diagnostic.open_float()
+	end, { desc = "Go to previous diagnostic and show details" })
 end
 
 -- Setup the LSP servers you use
 lspconfig.ts_ls.setup({on_attach = on_attach})
 lspconfig.zls.setup({on_attach = on_attach})
+
+require('claude-code').setup()
