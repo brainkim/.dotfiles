@@ -7,8 +7,9 @@ Plug("preservim/nerdtree")
 Plug("ctrlpvim/ctrlp.vim")
 Plug("editorconfig/editorconfig-vim")
 Plug("roryokane/detectindent")
-Plug("github/copilot.vim")
+-- Plug("github/copilot.vim")
 Plug("lewis6991/gitsigns.nvim")
+Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 -- Needed for claude-code.nvim?
 Plug('nvim-lua/plenary.nvim')
 Plug('greggh/claude-code.nvim')
@@ -64,14 +65,14 @@ local on_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', {noremap = true, silent = true})
 
-  vim.keymap.set('n', 'K', function()
-    local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line('.') - 1 })
-    if #diagnostics > 0 then
-      vim.diagnostic.open_float()
-    else
-      vim.lsp.buf.hover()
-    end
-  end, { buffer = bufnr, noremap = true, silent = true })
+  -- vim.keymap.set('n', 'K', function()
+  --   local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line('.') - 1 })
+  --   if #diagnostics > 0 then
+  --     vim.diagnostic.open_float()
+  --   else
+  --     vim.lsp.buf.hover()
+  --   end
+  -- end, { buffer = bufnr, noremap = true, silent = true })
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', {noremap = true, silent = true})
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'cr', '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true, silent = true})
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', {noremap = true, silent = true})
@@ -88,5 +89,22 @@ end
 -- Setup the LSP servers you use
 lspconfig.ts_ls.setup({on_attach = on_attach})
 lspconfig.zls.setup({on_attach = on_attach})
+
+-- Treesitter configuration (will work after running :PlugInstall)
+local ok, treesitter = pcall(require, 'nvim-treesitter.configs')
+if ok then
+  treesitter.setup {
+    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "typescript", "python", "bash", "json", "yaml", "markdown" },
+    sync_install = false,
+    auto_install = true,
+    highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = false,
+    },
+    indent = {
+      enable = true
+    },
+  }
+end
 
 require('claude-code').setup()
