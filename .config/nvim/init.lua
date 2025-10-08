@@ -10,9 +10,6 @@ Plug("roryokane/detectindent")
 -- Plug("github/copilot.vim")
 Plug("lewis6991/gitsigns.nvim")
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
--- Needed for claude-code.nvim?
-Plug('nvim-lua/plenary.nvim')
-Plug('greggh/claude-code.nvim')
 vim.call('plug#end')
 
 -- General settings
@@ -106,5 +103,3 @@ if ok then
     },
   }
 end
-
-require('claude-code').setup()
