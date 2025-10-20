@@ -1,5 +1,5 @@
 export EDITOR="nvim"
-export PROMPT="%K{white}%F{blue}%~%f %F{red}%#%f%k "
+export PROMPT="%S%~ %F{white}%#%f %s "
 
 export CLICOLOR=1
 
