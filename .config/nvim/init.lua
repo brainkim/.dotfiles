@@ -54,6 +54,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- Key mappings
 vim.api.nvim_set_keymap('n', '<C-L>', ':nohlsearch<CR><C-L>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-n>', ':NERDTreeToggle<CR>', {noremap = true, silent = true})
+-- Exit terminal mode with Esc
+vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap = true, silent = true})
+
+-- Auto-enter insert mode when navigating to terminal
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "term://*",
+  command = "startinsert"
+})
 
 -- LSP configuration
 local lspconfig = require('lspconfig')
@@ -103,3 +111,7 @@ if ok then
     },
   }
 end
+
+-- Neovim 0.10 sets opaque background colors
+vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "NonText", { bg = "NONE" })
