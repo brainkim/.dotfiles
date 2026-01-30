@@ -28,3 +28,4 @@ export CPPFLAGS="-I/opt/homebrew/opt/llvm@19/include"
 # bun completions
 [ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
 export PATH="/Users/briankim/.bun/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
