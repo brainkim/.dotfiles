@@ -5,6 +5,7 @@ dotfiles=(
   ".tmux.conf"
   ".zshrc"
   ".config/nvim/init.lua"
+  ".config/git/ignore"
 )
 
 # Get the absolute path of the dotfiles directory
@@ -15,6 +16,7 @@ for file in "${dotfiles[@]}"; do
   source="$dotfiles_dir/$file"
   
   # Create symlink
+  mkdir -p "$(dirname "$target")"
   echo "Linking $source -> $target"
   rm -r $target
   ln -sf "$source" "$target"

@@ -1,0 +1,44 @@
+# Claude
+**/.claude/settings.local.json
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Node / JS
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.yarn/cache
+.yarn/unplugged
+.yarn/install-state.gz
+
+# Bun
+bun.lockb.bak
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Editors
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# Build output
+dist/
+.cache/
+.parcel-cache/
+.turbo/
+
+# OS junk
+Thumbs.db
