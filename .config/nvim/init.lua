@@ -64,36 +64,28 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 -- LSP configuration
-local lspconfig = require('lspconfig')
-local on_attach = function(client, bufnr)
-  -- Your mappings and additional setup go here
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', {noremap = true, silent = true})
+-- nvim-lspconfig's require('lspconfig')...setup() framework is deprecated as
+-- of Nvim 0.11; configs now live under lsp/ and are activated via
+-- vim.lsp.config()/vim.lsp.enable(). See :help lspconfig-nvim-0.11
+vim.lsp.enable({ 'ts_ls', 'zls' })
 
-  -- vim.keymap.set('n', 'K', function()
-  --   local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line('.') - 1 })
-  --   if #diagnostics > 0 then
-  --     vim.diagnostic.open_float()
-  --   else
-  --     vim.lsp.buf.hover()
-  --   end
-  -- end, { buffer = bufnr, noremap = true, silent = true })
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', {noremap = true, silent = true})
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'cr', '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true, silent = true})
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', {noremap = true, silent = true})
-	vim.keymap.set('n', ']d', function()
-		vim.diagnostic.goto_next()
-		vim.diagnostic.open_float()
-	end, { desc = "Go to next diagnostic and show details" })
-	vim.keymap.set('n', '[d', function()
-		vim.diagnostic.goto_prev()
-		vim.diagnostic.open_float()
-	end, { desc = "Go to previous diagnostic and show details" })
-end
-
--- Setup the LSP servers you use
-lspconfig.ts_ls.setup({on_attach = on_attach})
-lspconfig.zls.setup({on_attach = on_attach})
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
+  callback = function(ev)
+    local opts = { buffer = ev.buf, noremap = true, silent = true }
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', 'cr', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', ']d', function()
+      vim.diagnostic.jump({ count = 1, float = true })
+    end, vim.tbl_extend('force', opts, { desc = 'Go to next diagnostic and show details' }))
+    vim.keymap.set('n', '[d', function()
+      vim.diagnostic.jump({ count = -1, float = true })
+    end, vim.tbl_extend('force', opts, { desc = 'Go to previous diagnostic and show details' }))
+  end,
+})
 
 -- Treesitter configuration (will work after running :PlugInstall)
 local ok, treesitter = pcall(require, 'nvim-treesitter.configs')
