@@ -45,6 +45,8 @@ vim.opt.wildmenu = true
 -- Use tree view in netrw by default
 vim.g.netrw_liststyle = 3
 
+vim.g.NERDTreeFileLines = 1
+
 -- Autocommands
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
