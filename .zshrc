@@ -16,9 +16,7 @@ export PATH="./node_modules/.bin:$PATH"
 export PATH="$PATH:~/.bun/bin"
 export PATH="~/go/bin:$PATH"
 
-export RUSTUP_HOME=/opt/rust
-export CARGO_HOME=/opt/rust
-export PATH="~/.cargo/bin:$PATH"
+export PATH="$HOME/.cargo/bin:/opt/homebrew/opt/rustup/bin:$PATH"
 
 # llvm for bun development
 export PATH="/opt/homebrew/opt/llvm@19/bin:$PATH"
