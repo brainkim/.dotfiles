@@ -69,7 +69,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- nvim-lspconfig's require('lspconfig')...setup() framework is deprecated as
 -- of Nvim 0.11; configs now live under lsp/ and are activated via
 -- vim.lsp.config()/vim.lsp.enable(). See :help lspconfig-nvim-0.11
-vim.lsp.enable({ 'ts_ls', 'zls' })
+vim.lsp.config('tsgo', { cmd = { 'tsc', '--lsp', '--stdio' } })
+vim.lsp.enable({ 'tsgo', 'zls' })
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
