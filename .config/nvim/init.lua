@@ -69,8 +69,46 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- nvim-lspconfig's require('lspconfig')...setup() framework is deprecated as
 -- of Nvim 0.11; configs now live under lsp/ and are activated via
 -- vim.lsp.config()/vim.lsp.enable(). See :help lspconfig-nvim-0.11
-vim.lsp.config('tsgo', { cmd = { 'tsc', '--lsp', '--stdio' } })
-vim.lsp.enable({ 'tsgo', 'zls' })
+-- ts_ls runs tsserver, which TypeScript 7 no longer ships; 7 serves LSP
+-- from tsc itself. A project whose own TypeScript is older than 7 gets ts_ls,
+-- and everything else gets TypeScript 7's server.
+local function typescript(root)
+  for dir in vim.fs.parents(vim.fs.joinpath(root, '_')) do
+    local pkg = vim.fs.joinpath(dir, 'node_modules/typescript/package.json')
+    if vim.uv.fs_stat(pkg) then
+      local ok, data = pcall(vim.json.decode, table.concat(vim.fn.readfile(pkg), '\n'))
+      return ok and tonumber(tostring(data.version):match('^(%d+)')) or nil, dir
+    end
+  end
+end
+
+local function only(name, wanted)
+  local root_dir = vim.lsp.config[name].root_dir
+  vim.lsp.config(name, {
+    root_dir = function(bufnr, on_dir)
+      root_dir(bufnr, function(root)
+        if wanted(typescript(root)) then
+          on_dir(root)
+        end
+      end)
+    end,
+  })
+end
+
+local function before7(major)
+  return major ~= nil and major < 7
+end
+
+only('ts_ls', before7)
+only('tsgo', function(major) return not before7(major) end)
+vim.lsp.config('tsgo', {
+  cmd = function(dispatchers, config)
+    local major, dir = typescript(config.root_dir)
+    local tsc = major and major >= 7 and vim.fs.joinpath(dir, 'node_modules/.bin/tsc') or 'tsc'
+    return vim.lsp.rpc.start({ tsc, '--lsp', '--stdio' }, dispatchers)
+  end,
+})
+vim.lsp.enable({ 'ts_ls', 'tsgo', 'zls' })
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
