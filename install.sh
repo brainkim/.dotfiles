@@ -4,6 +4,7 @@
 dotfiles=(
   ".tmux.conf"
   ".zshrc"
+  ".zshenv"
   ".config/nvim/init.lua"
   ".config/git/ignore"
 )
