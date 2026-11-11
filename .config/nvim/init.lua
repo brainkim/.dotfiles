@@ -1,4 +1,4 @@
--- Set up lazy.nvim
+-- Set up vim-plug
 local vim = vim
 local Plug = vim.fn['plug#']
 vim.call('plug#begin')

@@ -18,7 +18,7 @@ for file in "${dotfiles[@]}"; do
   # Create symlink
   mkdir -p "$(dirname "$target")"
   echo "Linking $source -> $target"
-  rm -r $target
+  rm -rf "$target"
   ln -sf "$source" "$target"
 done
 

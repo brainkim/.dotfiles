@@ -6,17 +6,17 @@ export CLICOLOR=1
 bindkey -e
 setopt share_history
 
-[ -f "$HOME/.env" ] && source "$HOME/.env"
+[ -f ~/.env ] && source ~/.env
 
 alias vim="nvim"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="./node_modules/.bin:$PATH"
-export PATH="$PATH:~/.bun/bin"
-export PATH="~/go/bin:$PATH"
+export PATH=~/.bun/bin:$PATH
+export PATH=~/go/bin:$PATH
 
-export PATH="$HOME/.cargo/bin:/opt/homebrew/opt/rustup/bin:$PATH"
+export PATH=~/.cargo/bin:/opt/homebrew/opt/rustup/bin:$PATH
 
 # llvm for bun development
 export PATH="/opt/homebrew/opt/llvm@19/bin:$PATH"
@@ -24,7 +24,6 @@ export LDFLAGS="-L/opt/homebrew/opt/llvm@19/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm@19/include"
 
 # bun completions
-[ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
-export PATH="/Users/briankim/.bun/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+[ -s ~/.bun/_bun ] && source ~/.bun/_bun
+export PATH=~/.local/bin:$PATH
 eval "$(mise activate zsh)"
