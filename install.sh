@@ -7,6 +7,9 @@ dotfiles=(
   ".zshenv"
   ".config/nvim/init.lua"
   ".config/git/ignore"
+  ".config/ghostty/config.ghostty"
+  ".config/neovide/config.toml"
+  ".config/mise/config.toml"
 )
 
 # Get the absolute path of the dotfiles directory
