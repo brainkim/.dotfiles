@@ -7,6 +7,7 @@ dotfiles=(
   ".zshenv"
   ".config/nvim/init.lua"
   ".config/git/ignore"
+  ".config/git/config"
   ".config/ghostty/config.ghostty"
   ".config/neovide/config.toml"
   ".config/mise/config.toml"
