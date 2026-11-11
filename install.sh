@@ -26,4 +26,7 @@ for file in "${dotfiles[@]}"; do
   ln -sf "$source" "$target"
 done
 
+command -v brew >/dev/null && brew bundle --file="$dotfiles_dir/Brewfile"
+command -v mise >/dev/null && mise install
+
 echo "Dotfiles installation complete!"

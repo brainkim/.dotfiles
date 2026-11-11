@@ -14,9 +14,8 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="./node_modules/.bin:$PATH"
 export PATH=~/.bun/bin:$PATH
-export PATH=~/go/bin:$PATH
 
-export PATH=~/.cargo/bin:/opt/homebrew/opt/rustup/bin:$PATH
+export PATH=~/.cargo/bin:$PATH
 
 # llvm for bun development
 export PATH="/opt/homebrew/opt/llvm@19/bin:$PATH"
